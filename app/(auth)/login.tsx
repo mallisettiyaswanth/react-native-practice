@@ -13,12 +13,14 @@ import {
 import Checkbox from "expo-checkbox";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useRouter } from "expo-router";
 
 const LoginScreen = () => {
   const { width } = Dimensions.get("window");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isChecked, setChecked] = useState(false);
+  const router = useRouter();
 
   return (
     <SafeAreaView className="flex-1 bg-white">
@@ -68,12 +70,15 @@ const LoginScreen = () => {
                     placeholder="Password"
                     secureTextEntry
                     className="border-2 border-gray-300 rounded-xl w-10/12 px-4 py-3"
-                                  />
-                                  <View className="w-10/12 py-1 px-3 flex flex-row gap-3 items-center">
-                                      
-                  <Checkbox className="rounded-xl" value={isChecked} onValueChange={(val) => setChecked(val)} />
+                  />
+                  <View className="w-10/12 py-1 px-3 flex flex-row gap-3 items-center">
+                    <Checkbox
+                      className="rounded-xl"
+                      value={isChecked}
+                      onValueChange={(val) => setChecked(val)}
+                    />
                     <Text className="text-black/70">Remember me</Text>
-                                  </View>
+                  </View>
                 </View>
 
                 <View className="w-full flex flex-col gap-3 items-center">
@@ -93,7 +98,7 @@ const LoginScreen = () => {
                     Don't have an account?{" "}
                     <Text
                       className="text-green-500 font-semibold"
-                      onPress={() => {}}
+                      onPress={() => router.replace("/(auth)/signup")}
                     >
                       Sign Up
                     </Text>
