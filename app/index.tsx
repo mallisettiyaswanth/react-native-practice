@@ -46,13 +46,22 @@ const LandingPage = () => {
             </Text>
           </View>
         </View>
-        <Button
-          title="Get Started"
-          onPress={() => {
-            router.push("/(auth)/login");
-          }}
-          className="w-10/12"
-        />
+        <View className="flex flex-col gap-3 w-full items-center">
+          <Button
+            title="Get Started"
+            onPress={() => {
+              router.push("/(auth)/login");
+            }}
+            className="w-10/12"
+          />
+          <Button
+            title="Skip"
+            onPress={() => {
+              router.push("/(tabs)/home");
+            }}
+            className="w-10/12"
+          />
+        </View>
       </ImageBackground>
     </View>
   );
