@@ -1,16 +1,61 @@
-import LinearGradient from 'react-native-linear-gradient';
-import { View, Text } from 'react-native';
-import { Link } from "expo-router"
-export default function Index() {
-  return (
-      <View className="items-center justify-center flex-1 bg-gray-500">
-          <Text className="text-white">Hello World</Text>
-          <Link href="/onboarding" >
-                Go to Onboarding
-          </Link>
+import {
+  View,
+  Text,
+  ImageBackground,
+  Image,
+  Dimensions,
+  StatusBar,
+} from "react-native";
+import React from "react";
+import Button from "@/components/Button";
+import { useRouter } from "expo-router";
 
-          <Link href="/movie/avengers">Avengers</Link>
-          <Link href="/movie/random">Random</Link>
-      </View>
+const LandingPage = () => {
+  const { width } = Dimensions.get("window");
+  const router = useRouter();
+
+  return (
+    <View className="flex-1">
+      <StatusBar
+        translucent
+        backgroundColor="transparent"
+        barStyle="light-content"
+      />
+      <ImageBackground
+        source={require("../assets/images/background_landing.webp")}
+        className="flex-1 items-center py-16 pb-20"
+      >
+        <View className="absolute top-0 left-0 right-0 bottom-0 bg-black opacity-70" />
+
+        <View className="flex-1 items-center justify-center z-10">
+          <View className="flex flex-col items-center justify-center gap-5 px-6">
+            <Image
+              source={require("../assets/images/logo.png")}
+              style={{
+                width: width * 0.5,
+                height: width * 0.5,
+                resizeMode: "contain",
+              }}
+            />
+            <Text className="text-white text-4xl font-bold text-center">
+              AI Diet Planner
+            </Text>
+            <Text className="text-white text-xl font-semibold text-center px-4">
+              Craft delicious, healthy meal plans tailored just for you. Achieve
+              your goals with ease!
+            </Text>
+          </View>
+        </View>
+        <Button
+          title="Get Started"
+          onPress={() => {
+            router.push("/(auth)/login");
+          }}
+          className="w-10/12"
+        />
+      </ImageBackground>
+    </View>
   );
-}
+};
+
+export default LandingPage;
